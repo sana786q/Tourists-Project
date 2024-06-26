@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="mark">
+    <center><h1>Tourism Places</h1></center> <br>
+     <div class="d-flex justify-content-between align-items-center">
+         <h3>places</h3>
+
+         <div class="btn-r">
+             <h3>location</h3>
+         </div>
+     </div><hr><hr>
+
+     {% for tp in addedplace %}
+     <div class="d-flex justify-content-between align-items-center">
+         <h4>{{ tp.place_name }}</h4>
+
+         <div class="btn-r">
+             <h4>{{ tp.location }}</h4>
+         </div>
+     </div><br><br>
+     {% endfor %}
+
+     <center><h1>Hotels</h1></center> <br>
+     <div class="d-flex justify-content-between align-items-center">
+         <h3>places</h3>
+
+         <div class="btn-r">
+             <h3>location</h3>
+         </div>
+     </div><hr><hr>
+
+     {% for h in addedhotel %}
+     <div class="d-flex justify-content-between align-items-center">
+         <h4>{{ h.hotel_name }}</h4>
+
+         <div class="btn-r">
+             <h4>{{ h.location }}</h4>
+         </div>
+     </div><br><br>
+     {% endfor %}
+
+     <center><h1>Restaurants</h1></center> <br>
+     <div class="d-flex justify-content-between align-items-center">
+         <h3>places</h3>
+
+         <div class="btn-r">
+             <h3>location</h3>
+         </div>
+     </div><hr><hr>
+
+     {% for r in addedrestaurant %}
+     <div class="d-flex justify-content-between align-items-center">
+         <h4>{{ r.restaurant_name }}</h4>
+
+         <div class="btn-r">
+             <h4>{{ r.location }}</h4>
+         </div>
+     </div><br><br>
+     {% endfor %}
+
+     <center><h1>Temples</h1></center> <br>
+     <div class="d-flex justify-content-between align-items-center">
+         <h3>places</h3>
+
+         <div class="btn-r">
+             <h3>location</h3>
+         </div>
+     </div><hr><hr>
+
+     {% for t in addedtemple %}
+     <div class="d-flex justify-content-between align-items-center">
+         <h4>{{ t.temple_name }}</h4>
+
+         <div class="btn-r">
+             <h4>{{ t.location }}</h4>
+         </div>
+     </div><br><br>
+     {% endfor %}
+
+     <center><h1>Shopping Malls</h1></center> <br>
+     <div class="d-flex justify-content-between align-items-center">
+         <h3>places</h3>
+
+         <div class="btn-r">
+             <h3>location</h3>
+         </div>
+     </div><hr><hr>
+
+     {% for s in addedmall %}
+     <div class="d-flex justify-content-between align-items-center">
+         <h4>{{ s.mall_name }}</h4>
+
+         <div class="btn-r">
+             <h4>{{ s.location }}</h4>
+         </div>
+     </div><br><br>
+     {% endfor %}
+     
+</div>
+
+{% endblock  %}

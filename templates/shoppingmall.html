@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="contain">
+    <div id="carouselExampleSlidesOnlt" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'carousel/shp1.jpg' %}" class="d-block w-100" alt="..." height="500vh">
+                <div class="carousel-caption ">
+                    <div class="d-grid gap-2 col-7 mx-auto">
+                        <b class="sm"><strong></strong></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="con">
+    <h1>Shopping Malls in Jabalpur</h1>
+
+    {% for object in allobject %}
+    <div class="container my-4">
+        <div class="row featurette d-flex justify-content-center align-items-center">
+            <div class="col-md-7">
+                <h1 class="featurette-heading fw-normal lh-1"><mark>{{ object.mall_name }}</mark> </h1>
+                <p class="lead">{{ object.description }}</p>
+                <button type="button" class="btn btn-lg btn-outline-warning">
+                    <a href="{% url 'shoppingmall' object.id %}">Know More </a>
+                 </button><br>
+              
+            </div>
+            <div class="col-md-5">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                    class="img-fluid"
+                    src="{{ object.mall_pictures1.url }}"
+                    alt="" width="500px" height="500px">
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+
+</div>
+
+{% endblock  %}

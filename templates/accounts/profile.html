@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="vh-100">
+<div class="container h-100">
+<div class="wrapper-rg">
+  <div class="left">
+      <h5>Logged in as : </h5>
+      <h4>{{ user.full_name }}</h4>
+      <br>
+      <a href="{% url 'profile' %}"><h5>Profile</h5></a>
+      <a href="{% url 'forgotPassword' %}"><h5>Change Password</h5></a>
+      
+  </div>
+  <div class="right">
+      <div class="info">
+          <h3>Information</h3>
+          <div class="info_data">
+              <div class="data">
+                  <h4>Email</h4>
+                  <h6>{{ user.email }}</h6>
+              </div>
+              <div class="data">
+                  <h4>Phone</h4>
+                  <h6>{{ user.phone_number }}</h6>
+              </div>
+          </div>
+      </div>
+
+      <div class="projects">
+          <h3>Places</h3>
+          <a href="{% url 'marked_places' %}"><p>Marked by you to visit later</p></a>
+
+          {% comment %} <h4>Hotel</h4>
+          <div class="projects_data">
+              <div class="data">
+                  <h4>Places</h4>
+                  <p>Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="data">
+                  <h4>Location</h4>
+                  <p>dolor sit amet.</p>
+              </div>
+          </div> {% endcomment %}
+
+          
+      </div>
+
+      
+  </div>
+</div>
+</div>
+</section>
+
+
+{% endblock %}

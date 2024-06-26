@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="contain" row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2>
+
+    <div id="carouselExampleSlidesOnlt" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'carousel/hotel.jpg' %}" class="d-block w-100" alt="..." height="550vh">
+                <div class="carousel-caption ">
+                    <div class="d-grid gap-2 col-7 mx-auto">
+                        <b class="hotel"><strong></strong></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="con">
+    <h1>Hotels and Places To Stay</h1>
+
+    {% for object in allobject %}
+    <div class="container my-4">
+        <div class="row featurette d-flex justify-content-center align-items-center">
+            <div class="col-md-7">
+                <h1 class="featurette-heading fw-normal lh-1"><mark>{{ object.hotel_name }}</mark> </h1>
+                <p class="lead">{{ object.description }}</p>
+                <button type="button" class="btn btn-lg btn-outline-warning">
+                   <a href="{% url 'hotel' object.id %}">Know More</a>
+                </button><br>
+    
+            </div>
+            <div class="col-md-5">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                    class="img-fluid"
+
+                    src="{{ object.hotel_pictures1.url }}"
+                    alt="" width="500px" height="500px">
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+</div>
+
+
+{% endblock %}

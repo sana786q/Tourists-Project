@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+  
+  <h1>Welcome To {{ restaurant.restaurant_name }}</h1><br>
+
+  <p class="p1">{{ restaurant.description }}</p>
+  <div class="c1">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>opening time:</h5>
+      <div class="btn-r">
+        <h5>location</h5>
+      </div><br><br>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>{{ restaurant.opening_time }}</h5>
+      <div class="btn-r">
+        <h5>{{ restaurant.location }}</h5>
+      </div><br><br>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>closing time:</h5>
+      <div class="btn-r">
+        <h5>contact</h5>
+      </div><br><br>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>{{ restaurant.closing_time }}</h5>
+      <div class="btn-r">
+        <h5>{{ restaurant.contact }}</h5>
+      </div><br><br>
+    </div>
+    <button type="button"class="btn btn-lg btn-outline-warning"><a href="{% url 'AddMarkedPlacesR' restaurant.id %}">Mark to visit later</a></button>
+
+  </div>
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">
+
+        {% if restaurant.restaurant_pictures1 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures1.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures2 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures2.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures3 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures3.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures4 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures4.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures5 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures5.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures6 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures6.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures7 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures7.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+
+        {% if restaurant.restaurant_pictures8 %}
+        <div class="comb">
+          <div class="card shadow-sm">
+            <img src="{{ restaurant.restaurant_pictures8.url }}" width="100%" height="350" role="img">
+
+          </div>
+        </div>
+        {% endif %}
+        
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="row p1">
+    <div class="col-md-9">
+    
+        
+
+        <form action="{% url 'submit_review' restaurant.id %}" method="POST">
+            {% csrf_token %}
+            <h5> Write Your Review </h5>
+            
+            <div>
+                <!--Rating Satrs-->
+                <label>How do you rate this product?</label>
+                <br>
+                <div class="rate">
+                    <input type="radio" name="rating" id="rating10" value="5" required/><label for="rating10" title="5"></label>
+                    <input type="radio" name="rating" id="rating9" value="4.5" required/><label for="rating9" title="4.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating8" value="4" required/><label for="rating8" title="4"></label>
+                    <input type="radio" name="rating" id="rating7" value="4.5" required/><label for="rating7" title="3.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating6" value="3" required/><label for="rating6" title="3"></label>
+                    <input type="radio" name="rating" id="rating5" value="2.5" required/><label for="rating5" title="2.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating4" value="2" required/><label for="rating4" title="2"></label>
+                    <input type="radio" name="rating" id="rating3" value="1.5" required/><label for="rating3" title="1.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating2" value="1" required/><label for="rating2" title="1"></label>
+                    <input type="radio" name="rating" id="rating1" value="0.5" required/><label for="rating1" title="0.5" class="half"></label>
+                </div>
+<br>
+                Review Title :
+                <input type="text" class="form-control" name="subject">
+                <br>
+                Review :
+                <textarea name="review" rows="4" class="form-control"></textarea>
+                <br>
+                {% if user.is_authenticated %}
+                        <input type="submit" value="Submit Review" class="btn btn-primary">
+                
+                {% else %}
+                <p>You must be logged in to post a review.<span><a href="{% url 'login' %}">Login Now</a></span></p>
+                {% endif %}
+
+            </div>
+            {% include 'include/alerts.html' %}
+        </form>
+    <br>
+    <header class="section-heading">
+        <h3>Customer Reviews </h3>
+            <div class="rating-star">
+                <span>
+                    <i class="fa fa-star{% if single_product.averageReview < 0.5 %}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if single_product.averageReview < 1.5 %}-o{% elif single_product.averageReview >= 1.5 and single_product.averageReview < 2 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if single_product.averageReview < 2.5 %}-o{% elif single_product.averageReview >= 2.5 and single_product.averageReview < 3 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if single_product.averageReview < 3.5 %}-o{% elif single_product.averageReview >= 3.5 and single_product.averageReview < 4 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if single_product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5 %}-half-o{% endif %}" aria-hidden="true"></i>
+                </span>
+            </div> 
+        
+    </header>
+
+    {% for review in reviews %}
+        
+                
+                <div class="text">
+                    <span class="date text-muted float-md-right">{{ review.updated_at }}</span>  
+                    <h6 class="mb-1">{{ review.user.full_name }}</h6>
+                    <div class="rating-star">
+                        <span>
+                            <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o{% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o{% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o{% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o{% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o{% endif %}" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <h6>{{ review.subject }}</h6>
+                    <p>
+                      {{ review.review }}
+                    </p>	
+                  </div>
+               
+    {% endfor %}
+    
+    </div> <!-- col.// -->
+</div> <!-- row.// -->
+
+  
+</body>
+
+{% endblock  %}
